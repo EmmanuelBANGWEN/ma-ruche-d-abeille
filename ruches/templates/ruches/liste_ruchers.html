@@ -1,0 +1,198 @@
+{% block contents %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %} Tableau des reines {% endblock title %}</title>
+  <style>
+    /* Style de base pour le tableau et le corps */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: #f0f8ff; /* Couleur plus douce */
+      color: #333;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h2 {
+      font-size: 36px;
+      color: #FF8C00; /* Orange doux */
+      margin-bottom: 20px;
+      animation: fadeInDown 1s ease-out;
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      max-width: 1000px;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 1.2em;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    thead th {
+      background-color: #FF8C00; /* Orange */
+      color: #ffffff;
+      text-align: center;
+      padding: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    tbody td {
+      padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #dddddd;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      background-color: #ffe8d1; /* Légère teinte d'orange */
+    }
+
+    /* Bouton stylé */
+    .button-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      background-color: #FF8C00; /* Orange */
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .btn:hover {
+      background-color: #e87400; /* Orange plus foncé */
+      transform: scale(1.05);
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      color: #FF8C00; /* Orange */
+      font-size: 18px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #e87400; /* Orange plus foncé */
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      table {
+        font-size: 1em;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      .btn {
+        font-size: 16px;
+        padding: 10px 20px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+    <h2>Tableau des ruchers</h2>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>emplacement</th>
+          <th>Date de date_creation</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for rucher in ruchers %}
+        <tr>
+          <td>{{ rucher.nom }}</td>
+          <td>{{ rucher.emplacement }}</td>
+          <td>{{ rucher.date_creation|date:"d/m/Y" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  
+    <!-- Bouton pour modifier en masse -->
+    <form action="{% url 'modifier_rucher' %}" method="get">
+      <button type="submit" class="btn">Modifier en masse</button>
+    </form>
+  
+    <!-- Lien pour ajouter une nouvelle reine -->
+    <a href="{% url 'ajouter_rucher' %}" class="btn">Ajouter un rucher</a>
+  
+  </body>
+  </html>
+  
+  {% endblock contents %}
+  

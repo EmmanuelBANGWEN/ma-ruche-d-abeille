@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Projet Abeilles</title>
+    <style>
+        /* Style global */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background: #f3de55f7; /* Fond couleur miel */
+        }
+
+        /* Section du header */
+        .hero-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url('images/abeille.jpg') no-repeat center center/cover;
+            position: relative;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            animation: slideIn 3s ease;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            letter-spacing: 4px;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin: 20px 0;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        /* Animation pour le titre */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animation du bouton */
+        .enter-btn {
+            position: relative;
+            background-color: #0b0b0b; 
+            color: #fff;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Rayures statiques horizontales */
+        .enter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgb(251, 250, 250) 0px,
+                rgba(0, 0, 0, 0.2) 5px,
+                transparent px,
+                transparent 1px
+            );
+            z-index: -1;
+        }
+
+        /* Change couleur du texte lorsque survolé */
+        .enter-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Animation du fond de la page */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+
+     
+
+    </style>
+</head>
+<body>
+
+    <!-- Section Hero -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Le Projet des Abeilles</h1>
+            <p>Un projet innovant pour la préservation des abeilles et de l'écosystème</p>
+            <a href="{% url 'exploitation_global' %}" class="enter-btn">Entrer</a>
+        </div>
+    </section>
+
+    
+
+</body>
+</html>

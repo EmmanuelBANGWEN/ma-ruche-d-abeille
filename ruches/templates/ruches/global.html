@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Abeilles</title>
+    <style>
+        /* Style de base et réinitialisation */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #fff3cd; /* Couleur d'inspiration miel */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ff9800; /* Orange doux */
+            text-align: center;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        section {
+            margin: 40px 0;
+            padding: 20px;
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .enter-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            font-size: 18px;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .enter-btn:hover {
+            background-color: #e68a00;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            section {
+                margin: 20px 0;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .enter-btn {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section>
+        <h1>Liste de ruches</h1>
+        <a href="{% url 'liste_ruches' %}" class="enter-btn">Entrer</a>
+    </section>
+
+    <section>
+        <h1>Liste de reines</h1>
+        <a href="{% url 'liste_reines' %}" class="enter-btn">Entrer</a>
+    </section>
+
+    <section>
+        <h1>Mes ruchers</h1>
+        <a href="{% url 'liste_ruchers' %}" class="enter-btn">Entrer</a>
+    </section>
+
+    <section>
+        <h1>Mes recoltes</h1>
+        <a href="{% url 'liste_recolte' %}" class="enter-btn">Entrer</a>
+    </section>
+
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<h1>Ajouter une récolte</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Ajouter</button>
+</form>
+
+<a href="{% url 'liste_recolte' %}" class="btn">Retour à la liste</a>
+
+<style>
+    /* Style de base pour le tableau et le corps */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+    }
+
+    body {
+        background-color: #f0f8ff; /* Couleur plus douce */
+        color: #333;
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    h1 {
+        font-size: 36px;
+        color: #FF8C00; /* Orange doux */
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    form {
+        margin-bottom: 20px;
+    }
+
+    /* Style du bouton */
+    .btn {
+        padding: 12px 24px;
+        background-color: #FF8C00; /* Orange */
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        text-align: center;
+        text-decoration: none; /* S'assurer qu'il n'y a pas de soulignement sur les liens */
+        display: inline-block; /* S'assurer que le bouton a un comportement de bloc */
+    }
+
+    .btn:hover {
+        background-color: #e87400; /* Orange plus foncé */
+        transform: scale(1.05);
+    }
+
+    /* Empêcher la disparition du texte sur le clic */
+    .btn:active {
+        background-color: #e87400; /* Assurer une transition douce sans disparition du texte */
+        color: #fff; /* Assurer que le texte reste blanc même après clic */
+    }
+
+    a {
+        display: inline-block;
+        margin-top: 20px;
+        font-size: 18px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* Animations */
+    @keyframes fadeInDown {
+        0% {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+</style>
