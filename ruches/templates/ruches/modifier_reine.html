@@ -1,63 +1,43 @@
-{% extends 'ruches/liste_reines.html' %}
+{% extends 'ruches/base.html' %}
 
-{% block contents %}
+{% block title %}Modifier les Reines{% endblock %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modifier Reine</title>
-  
-</head>
-<body>
-  <h2>{% block titre %} Modifier les Reines {% endblock titre %}</h2>
-  <form action="." method="post">
-      {% csrf_token %}
-          <table>
-              <thead>
-                  <tr>
-                    <th>ID Reine</th>
-                    <th>Nom du rucher</th>
-                    <th>Age</th>
-                    <th>Santé</th>
-                    <th>Date de remplacement</th>
-
-                  </tr>
-                </thead>
-              <tbody>
-                {% for reine in reines %}
-                <tr>
-                  <td><input type="text" name="id_reine_{{ reine.id_reine }}" value="{{ reine.id_reine }}"></td>
-                  <td><input type="text" name="rucher_nom_{{ reine.id_reine }}" value="{{ reine.rucher.nom }}"></td>
-                  <td><input type="text" name="age_{{ reine.id_reine }}" value="{{ reine.age }}"></td>
-                  <!-- <td><input type="text" name="sante_{{ reine.id_reine }}" value="{{ reine.sante }}"></td> -->
-                  
-                  <td>
-                    <select name="sante_{{ reine.id_reine }}">
-                      <option value="Normale" {% if reine.sante == 'Normale' %}selected{% endif %}>Normale</option>
-                      <option value="Infecter" {% if reine.sante == 'Infecter' %}selected{% endif %}>Infecter</option>
-                    </select>
-                  </td>
-                  
-                  <td><input type="date" name="date_remplacement_{{ reine.id_reine }}" value="{{ reine.date_remplacement|date:"Y-m-d" }}"></td>
-                </tr>
-                {% endfor %}
-              </tbody>
-            </table>
-            <button type="submit" style="float: left;" class="btn">Mettre à jour</button>
-          
-
-      {% block content %}
-
-      <a href="{% url 'liste_reines' %}" style="float: right;">
-        <button type="button" class="btn">Annuler</button>
-      </a>
-      {% endblock content %}
+{% block content %}
+<h2>Modifier les Reines</h2>
+<form action="." method="post">
+  {% csrf_token %}
+  <table>
+    <thead>
+      <tr>
+        <th>ID Reine</th>
+        <th>Nom du rucher</th>
+        <th>Age</th>
+        <th>Santé</th>
+        <th>Date de remplacement</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for reine in reines %}
+      <tr>
+        <td><input type="text" name="id_reine_{{ reine.id_reine }}" value="{{ reine.id_reine }}"></td>
+        <td><input type="text" name="rucher_nom_{{ reine.id_reine }}" value="{{ reine.rucher.nom }}"></td>
+        <td><input type="text" name="age_{{ reine.id_reine }}" value="{{ reine.age }}"></td>
+        <td>
+          <select name="sante_{{ reine.id_reine }}">
+            <option value="Normale" {% if reine.sante == 'Normale' %}selected{% endif %}>Normale</option>
+            <option value="Infectée" {% if reine.sante == 'Infectée' %}selected{% endif %}>Infectée</option>
+          </select>
+        </td>
+        <td><input type="date" name="date_remplacement_{{ reine.id_reine }}" value="{{ reine.date_remplacement|date:'Y-m-d' }}"></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <button type="submit" class="btn">Mettre à jour</button>
+  <a href="{% url 'liste_reines' %}" class="btn">Annuler</a>
 </form>
 
-</body>
-</html>
+
 <style>
   /* Style de base pour le tableau et le corps */
   * {
@@ -211,4 +191,4 @@
   }
 
 </style>
-  {% endblock contents %}
+{% endblock content %}

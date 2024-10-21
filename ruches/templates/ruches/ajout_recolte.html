@@ -1,3 +1,9 @@
+{% extends 'ruches/base.html' %}
+
+{% block title %}Modifier les Recoltes{% endblock %}
+
+{% block content %}
+
 <h1>Ajouter une récolte</h1>
 <form method="POST">
     {% csrf_token %}
@@ -107,3 +113,6 @@
         }
     }
 </style>
+
+
+{% endblock content %}

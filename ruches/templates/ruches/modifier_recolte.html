@@ -1,17 +1,10 @@
-{% extends 'ruches/liste_recolte.html' %}
+{% extends 'ruches/base.html' %}
 
-{% block contents %}
+{% block title %}Modifier les Recoltes{% endblock %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modifier Recolte</title>
-  
-</head>
-<body>
-  <h2>{% block titre %} Modifier les Recoltes {% endblock titre %}</h2>
+{% block content %}
+
+<h2> Modifier les Recoltes </h2>
   <form action="." method="post">
       {% csrf_token %}
           <table>
@@ -37,17 +30,12 @@
             </table>
             <button type="submit" style="float: left;" class="btn">Mettre à jour</button>
           
-
-      {% block content %}
-
       <a href="{% url 'liste_recolte' %}" style="float: right;">
         <button type="button" class="btn">Annuler</button>
       </a>
-      {% endblock content %}
 </form>
 
-</body>
-</html>
+
 
 <style>
     /* Style de base pour le tableau et le corps */
@@ -202,4 +190,4 @@
     }
   
   </style>
-    {% endblock contents %}
+    {% endblock content %}

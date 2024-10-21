@@ -1,11 +1,42 @@
-{% block contents %}
+{% extends 'ruches/base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %} Tableau des reines {% endblock title %}</title>
+{% block title %}Tableau des reines{% endblock %}
+
+{% block content %}
+<h2>Tableau des reines</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID Reine</th>
+      <th>Nom du Rucher</th>
+      <th>Âge</th>
+      <th>Santé</th>
+      <th>Date de remplacement</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for reine in reines %}
+    <tr>
+      <td>{{ reine.id_reine }}</td>
+      <td>{{ reine.rucher.nom }}</td>
+      <td>{{ reine.age }}</td>
+      <td>{{ reine.sante }}</td>
+      <td>{{ reine.date_remplacement|date:"d M Y" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="button-container">
+  <form action="{% url 'modifier_reine' %}" method="get">
+    <button type="submit" class="btn">Modifier en masse</button>
+  </form>
+</div>
+
+<a href="{% url 'ajouter_reine' %}" class="btn">Ajouter une nouvelle reine</a>
+
+
   <style>
     /* Style de base pour le tableau et le corps */
     * {
@@ -159,43 +190,5 @@
     }
 
   </style>
-</head>
-<body>
 
-  <h2>Tableau des reines</h2>
-
-  <table>
-    <thead>
-      <tr>
-        <th>ID Reine</th>
-        <th>Nom du Rucher</th>
-        <th>Âge</th>
-        <th>Santé</th>
-        <th>Date de remplacement</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for reine in reines %}
-      <tr>
-        <td>{{ reine.id_reine }}</td>
-        <td>{{ reine.rucher.nom }}</td>
-        <td>{{ reine.age }}</td>
-        <td>{{ reine.sante }}</td>
-        <td>{{ reine.date_remplacement|date:"d M Y" }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-  <div class="button-container">
-    <form action="{% url 'modifier_reine' %}" method="get">
-      <button type="submit" class="btn">Modifier en masse</button>
-    </form>
-  </div>
-
-  <a href="{% url 'ajouter_reine' %}" class="btn">Ajouter une nouvelle reine</a>
-
-</body>
-</html>
-
-{% endblock contents %}
+{% endblock content %}

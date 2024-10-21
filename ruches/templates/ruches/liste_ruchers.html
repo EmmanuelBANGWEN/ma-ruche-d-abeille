@@ -1,12 +1,40 @@
-{% block contents %}
+{% extends 'ruches/base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %} Tableau des reines {% endblock title %}</title>
-  <style>
+{% block title %}Tableau des reines{% endblock %}
+
+{% block content %}
+
+<h2>Tableau des ruchers</h2>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>emplacement</th>
+          <th>Date de date_creation</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for rucher in ruchers %}
+        <tr>
+          <td>{{ rucher.nom }}</td>
+          <td>{{ rucher.emplacement }}</td>
+          <td>{{ rucher.date_creation|date:"d/m/Y" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  
+    <!-- Bouton pour modifier en masse -->
+    <form action="{% url 'modifier_rucher' %}" method="get">
+      <button type="submit" class="btn">Modifier en masse</button>
+    </form>
+  
+    <!-- Lien pour ajouter une nouvelle reine -->
+    <a href="{% url 'ajouter_rucher' %}" class="btn">Ajouter un rucher</a>
+  
+    
+<style>
     /* Style de base pour le tableau et le corps */
     * {
       margin: 0;
@@ -159,40 +187,8 @@
     }
 
   </style>
-</head>
-<body>
 
-    <h2>Tableau des ruchers</h2>
+    
+ 
   
-    <table>
-      <thead>
-        <tr>
-          <th>Nom</th>
-          <th>emplacement</th>
-          <th>Date de date_creation</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for rucher in ruchers %}
-        <tr>
-          <td>{{ rucher.nom }}</td>
-          <td>{{ rucher.emplacement }}</td>
-          <td>{{ rucher.date_creation|date:"d/m/Y" }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  
-    <!-- Bouton pour modifier en masse -->
-    <form action="{% url 'modifier_rucher' %}" method="get">
-      <button type="submit" class="btn">Modifier en masse</button>
-    </form>
-  
-    <!-- Lien pour ajouter une nouvelle reine -->
-    <a href="{% url 'ajouter_rucher' %}" class="btn">Ajouter un rucher</a>
-  
-  </body>
-  </html>
-  
-  {% endblock contents %}
-  
+  {% endblock content %}

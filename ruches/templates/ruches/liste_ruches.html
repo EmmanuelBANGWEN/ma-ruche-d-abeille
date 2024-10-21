@@ -1,11 +1,41 @@
-{% block contents %}
+{% extends 'ruches/base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %} Tableau des ruches {% endblock title %}</title>
+{% block title %}Tableau des reines{% endblock %}
+
+{% block content %}
+
+<h2>Tableau des ruches</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nom de la ruche</th>
+        <th>Nom du rucher</th>
+        <th>ID Reine</th>
+        <th>Niveau de miel (kg)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ruche in ruches %}
+      <tr>
+        <td>{{ ruche.nom }}</td>
+        <td>{{ ruche.rucher.nom }}</td>
+        <td>{{ ruche.id_reine }}</td>
+        <td>{{ ruche.niveaux_miel }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="button-container">
+    <form action="{% url 'modifier_ruche' %}" method="get">
+      <button type="submit" class="btn">Modifier en masse</button>
+    </form>
+  </div>
+
+  <a href="{% url 'ajouter_ruche' %}" class="btn">Ajouter une nouvelle ruche</a>
+
+
   <style>
     /* Style de base pour le tableau et le corps */
     * {
@@ -159,41 +189,8 @@
     }
 
   </style>
-</head>
-<body>
 
-  <h2>Tableau des ruches</h2>
+  
 
-  <table>
-    <thead>
-      <tr>
-        <th>Nom de la ruche</th>
-        <th>Nom du rucher</th>
-        <th>ID Reine</th>
-        <th>Niveau de miel (kg)</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for ruche in ruches %}
-      <tr>
-        <td>{{ ruche.nom }}</td>
-        <td>{{ ruche.rucher.nom }}</td>
-        <td>{{ ruche.id_reine }}</td>
-        <td>{{ ruche.niveaux_miel }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+{% endblock content %}
 
-  <div class="button-container">
-    <form action="{% url 'modifier_ruche' %}" method="get">
-      <button type="submit" class="btn">Modifier en masse</button>
-    </form>
-  </div>
-
-  <a href="{% url 'ajouter_ruche' %}" class="btn">Ajouter une nouvelle ruche</a>
-
-</body>
-</html>
-
-{% endblock contents %}
