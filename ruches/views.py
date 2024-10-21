@@ -155,13 +155,6 @@ def ajouter_recolte(request):
 
 
 
-
-
-
-
-
-
-
 import plotly.express as px
 import pandas as pd
 from django.shortcuts import render
@@ -171,14 +164,49 @@ def graphique_recolte(request):
     # Récupérer toutes les récoltes
     recoltes = Recolte.objects.all()
 
-    # Extraire les données pour les dates et quantités de miel
+    # Extraire les données pour les dates, quantités de miel, et ruches
     dates = [recolte.date_recolte for recolte in recoltes]
     quantites = [recolte.quantite_miel for recolte in recoltes]
     ruches = [recolte.ruche.nom for recolte in recoltes]
 
-    # Créer un graphique à partir des données avec Plotly
-    fig = px.line(x=dates, y=quantites, color=ruches, labels={'x': 'Date', 'y': 'Quantité de miel (kg)'}, title="Quantité de miel récoltée par ruche")
-    
+    # Créer un graphique à partir des données avec Plotly (histogramme/bar chart)
+    fig = px.bar(x=dates, y=quantites, color=ruches, 
+                 labels={'x': 'Date', 'y': 'Quantité de miel (kg)'}, 
+                 title="Répartition des récoltes de miel par ruche")
+
+    # Mettre à jour le style du graphique pour un rendu plus moderne
+    fig.update_layout(
+        title="Répartition des récoltes de miel par ruche au fil du temps",
+        xaxis_title="Date",
+        yaxis_title="Quantité de miel (kg)",
+        template="plotly_white",  # Utilisation d'un thème clair et moderne
+        plot_bgcolor="rgba(0,0,0,0)",  # Fond du graphique transparent
+        paper_bgcolor="rgba(255,200,100,1)",  # Fond orange clair
+        font=dict(
+            family="Arial, sans-serif",
+            size=14,
+            color="#4A4A4A"  # Couleur du texte moderne (gris foncé)
+        ),
+        title_font=dict(
+            size=20,
+            color="#4A4A4A",  # Titre en gris foncé
+            family="Arial, sans-serif"
+        ),
+        legend=dict(
+            title="Ruche",  # Ajout d'un titre pour la légende
+            orientation="h",  # Mettre la légende en horizontale
+            yanchor="bottom",
+            y=1.02,
+            xanchor="center",
+            x=0.5,
+            font=dict(
+                size=12,
+                color="#4A4A4A"
+            )
+        ),
+        hovermode="x unified",  # Améliorer l'interactivité avec un hover aligné sur l'axe x
+    )
+
     # Convertir le graphique en HTML
     graph_html = fig.to_html(full_html=False)
 

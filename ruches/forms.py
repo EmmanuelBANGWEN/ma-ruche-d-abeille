@@ -16,10 +16,17 @@ class RucheForm(forms.ModelForm):
 #         fields = ['id_reine', 'rucher', 'age', 'sante', 'date_remplacement']
 
 # @admin.register(Recolte)
+
+
 class RecolteForm(forms.ModelForm):
     class Meta:
         model = Recolte
         fields = ['ruche', 'date_recolte', 'quantite_miel']
+
+        widgets = {
+            'date_recolte': forms.DateInput(attrs={'type': 'date'}),  # Champ date avec le type 'date'
+        }
+
 
 class ReineForm(forms.ModelForm):
     class Meta:
@@ -33,4 +40,7 @@ class RucherForm(forms.ModelForm):
     class Meta:
         model = Rucher
         fields = ['nom', 'emplacement', 'date_creation']
+        widgets = {
+            'date_creation': forms.DateInput(attrs={'type': 'date'})
+        }
 

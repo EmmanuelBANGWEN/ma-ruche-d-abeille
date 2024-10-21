@@ -60,7 +60,7 @@
         /* Animation du bouton */
         .enter-btn {
             position: relative;
-            background-color: #0b0b0b; 
+            background-color: #FF8C00; 
             color: #fff;
             padding: 15px 40px;
             font-size: 1.2rem;
@@ -79,13 +79,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgb(251, 250, 250) 0px,
-                rgba(0, 0, 0, 0.2) 5px,
-                transparent px,
-                transparent 1px
-            );
+          
             z-index: -1;
         }
 
@@ -104,23 +98,44 @@
             }
         }
 
+        /* Style du logo animé Zbang */
+        .zbang-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2.5rem;
+            color: #FF8C00;
+            font-weight: bold;
+            animation: slideInZbang 2s ease;
+        }
 
-     
-
+        @keyframes slideInZbang {
+            0% {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
     </style>
 </head>
 <body>
 
+    <!-- Logo Zbang animé en haut à gauche -->
+    <div class="zbang-logo">
+        Zbang
+    </div>
+
     <!-- Section Hero -->
     <section class="hero-section">
         <div class="hero-content">
-            <h1>Le Projet des Abeilles</h1>
-            <p>Un projet innovant pour la préservation des abeilles et de l'écosystème</p>
+            <h1>Gestion des Abeilles </h1>
+            <p>Faciliter la gestion et le suivi pour la préservation des abeilles et de l'écosystème 🌿</p>
             <a href="{% url 'exploitation_global' %}" class="enter-btn">Entrer</a>
         </div>
     </section>
-
-    
 
 </body>
 </html>
